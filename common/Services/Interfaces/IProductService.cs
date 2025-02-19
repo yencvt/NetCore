@@ -1,9 +1,8 @@
-﻿using System;
-using common.Entities;
+﻿using common.Entities;
 
 namespace common.Services.Interfaces
 {
-	public interface IProductService
+    public interface IProductService
 	{
         Task<List<ProductEntity>> GetAllProducts();
 

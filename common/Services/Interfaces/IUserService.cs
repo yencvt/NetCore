@@ -1,5 +1,4 @@
-﻿using System;
-namespace common.Services.Interfaces
+﻿namespace common.Services.Interfaces
 {
     public interface IUserService
     {

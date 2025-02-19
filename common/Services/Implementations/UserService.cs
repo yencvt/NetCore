@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Security.Claims;
 using common.Services.Interfaces;
-using System.Security.Claims;
 
 namespace common.Services.Implementations
 {

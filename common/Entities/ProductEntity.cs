@@ -1,10 +1,9 @@
-﻿using System;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace common.Entities
 {
-	public class ProductEntity : AuditEntity
+    public class ProductEntity : AuditEntity
     {
         [BsonElement("code")]
         public string Code { get; set; }
