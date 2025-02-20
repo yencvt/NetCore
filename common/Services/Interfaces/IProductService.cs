@@ -4,7 +4,7 @@ namespace common.Services.Interfaces
 {
     public interface IProductService
 	{
-        Task<List<ProductEntity>> GetAllProducts();
+        List<ProductEntity> GetAllProducts();
 
         Task<ProductEntity> GetProductById(string id);
 

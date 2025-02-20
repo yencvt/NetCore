@@ -1,4 +1,37 @@
 ﻿<Properties StartupConfiguration="{E4E320F8-3DF9-44B7-A207-FB8A078AE675}|https" GitUserInfo="UsingGIT">
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="common/Program.cs">
+    <Files>
+      <File FileName="common/Models/Products/ProductQuery.cs" Line="8" Column="3" />
+      <File FileName="common/Services/Interfaces/IProductService.cs" Line="6" Column="3" />
+      <File FileName="common/AOP/LogingAspect.cs" Line="14" Column="10" />
+      <File FileName="common/Program.cs" Line="50" Column="27" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="common">
+            <Node name="common">
+              <Node name="AOP" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="GraphQL" expanded="True">
+                <Node name="Queries" expanded="True" />
+              </Node>
+              <Node name="Services" expanded="True">
+                <Node name="Implementations" expanded="True" />
+                <Node name="Interfaces" expanded="True" />
+              </Node>
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.common PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
 </Properties>

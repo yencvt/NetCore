@@ -1,22 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace common.Entities
+namespace common.Models.Products
 {
-    public class ProductEntity : AuditEntity
-    {
-        [BsonElement("code")]
-        [Required(ErrorMessage = "The Id field is required.")]
+	public class ProductQuery
+	{
         public string Code { get; set; }
 
-        [BsonElement("name")]
         public string Name { get; set; }
 
-        [BsonElement("description")]
         public string Description { get; set; }
 
-        [BsonElement("ratings")]
         public int Ratings { get; set; }
 
         [BsonElement("views")]

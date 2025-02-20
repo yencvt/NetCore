@@ -1,6 +1,6 @@
-﻿using System;
-using System.Net;
-using System.Text.Json;
+﻿using System.Text.Json;
+using common.Constants;
+using common.Models.Base;
 
 namespace common.Exceptions
 {
@@ -15,7 +15,7 @@ namespace common.Exceptions
             _logger = logger;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
@@ -30,26 +30,32 @@ namespace common.Exceptions
 
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            var statusCode = exception switch
-            {
-                //NotFoundException => (int)HttpStatusCode.NotFound, // 404
-                //BadRequestException => (int)HttpStatusCode.BadRequest, // 400
-                UnauthorizedAccessException => (int)HttpStatusCode.Unauthorized, // 401
-                _ => (int)HttpStatusCode.InternalServerError // 500
-            };
+            int statusEx = 500;
+            string codeEx = "500";
+            string messageEx;
 
-            var response = new
+            if (exception is CommonException commonEx)
             {
-                status = statusCode,
-                message = exception.Message,
-                errorType = exception.GetType().Name
-            };
+                statusEx = commonEx.Status;
+                codeEx = commonEx.Code;
+                messageEx = exception.Message;
+            }
+            else
+            {
+                statusEx = exception switch
+                {
+                    UnauthorizedAccessException => Messages.Unauthorized.Status,
+                    _ => Messages.InternalServerError.Status
+                };
+                messageEx = exception.Message;
+            }
 
+            var response = new ResponseBase<object>(codeEx?.ToString() ?? "500", messageEx, null);
+           
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = statusCode;
+            context.Response.StatusCode = statusEx;
 
             return context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
     }
 }
-

@@ -1,5 +1,4 @@
-﻿using System;
-using common.Entities;
+﻿using common.Entities;
 using common.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +33,10 @@ namespace common.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductEntity product)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await _productRepository.CreateAsync(product);
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }

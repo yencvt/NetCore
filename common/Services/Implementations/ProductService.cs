@@ -15,9 +15,9 @@ namespace common.Services.Implementations
             _userService = userService;
         }
 
-        public async Task<List<ProductEntity>> GetAllProducts()
+        public List<ProductEntity> GetAllProducts()
         {
-            return await _products.Find(_ => true).ToListAsync();
+            return _products.Find(_ => true).ToList();
         }
 
         public async Task<ProductEntity> GetProductById(string id)

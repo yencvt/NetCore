@@ -9,8 +9,10 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
     <PackageReference Include="MongoDB.Driver" Version="3.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Text.Json" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +23,12 @@
     <None Remove="Services\" />
     <None Remove="Services\Interfaces\" />
     <None Remove="Services\Implementations\" />
+    <None Remove="Models\Products\" />
+    <None Remove="Constants\" />
+    <None Remove="Utils\" />
+    <None Remove="Models\Base\" />
+    <None Remove="Filters\" />
+    <None Remove="Logs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
@@ -30,5 +38,15 @@
     <Folder Include="Services\" />
     <Folder Include="Services\Interfaces\" />
     <Folder Include="Services\Implementations\" />
+    <Folder Include="Models\Products\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Models\Base\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Logs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GraphQL, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="GraphQL, Version=4.6.1.0, Culture=neutral, PublicKeyToken=null" />
   </ItemGroup>
 </Project>
