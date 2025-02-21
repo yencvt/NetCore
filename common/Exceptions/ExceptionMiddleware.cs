@@ -1,6 +1,9 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 using common.Constants;
 using common.Models.Base;
+using common.Utils;
+using Microsoft.AspNetCore.Http;
 
 namespace common.Exceptions
 {
@@ -51,11 +54,20 @@ namespace common.Exceptions
             }
 
             var response = new ResponseBase<object>(codeEx?.ToString() ?? "500", messageEx, null);
-           
+
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = statusEx;
 
-            return context.Response.WriteAsync(JsonSerializer.Serialize(response));
+            return context.Response.WriteAsync(JsonUtils.ConvertObjectToJson(response));
+
+            //    string jsonResponse = JsonUtils.ConvertObjectToJson(response);
+
+            //    context.Response.ContentType = "application/json";
+            //    context.Response.StatusCode = statusEx;
+
+            //    // Đảm bảo response lỗi được ghi vào MemoryStream để RequestLoggingMiddleware có thể đọc
+            //    await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(jsonResponse));
+            //    context.Response.Body.Seek(0, SeekOrigin.Begin);
         }
     }
 }

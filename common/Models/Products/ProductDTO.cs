@@ -4,8 +4,22 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace common.Models.Products
 {
-	public class ProductQuery
+	public class ProductDTO
 	{
+		public ProductDTO()
+		{
+		}
+
+        public string Id { get; set; }
+
+        public long CreatedAt { get; set; }
+
+        public long UpdatedAt { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public string UpdatedBy { get; set; }
+
         public string Code { get; set; }
 
         public string Name { get; set; }
@@ -14,31 +28,20 @@ namespace common.Models.Products
 
         public int Ratings { get; set; }
 
-        [BsonElement("views")]
         public int Views { get; set; }
 
-        [BsonElement("type")]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Type { get; set; }
 
-        [BsonElement("status")]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Status { get; set; }
 
-        [BsonElement("img")]
         public List<string> Img { get; set; }
 
-        [BsonElement("hmac")]
         public string Hmac { get; set; }
 
-        [BsonElement("company_id")]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string CompanyId { get; set; }
 
-        [BsonElement("link")]
         public List<string> Link { get; set; }
 
-        [BsonElement("path")]
         public List<string> Path { get; set; }
     }
 }

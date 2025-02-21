@@ -23,12 +23,12 @@ namespace common.Logs
             _logger.LogInformation("Request: {Method} {Path} | Query: {Query} | Body: {Body}",
                 request.Method, request.Path, request.QueryString, requestBody);
 
+            await _next(context);
+
             // Log response
             var originalBodyStream = context.Response.Body;
             using var responseBody = new MemoryStream();
             context.Response.Body = responseBody;
-
-            await _next(context);
 
             string responseBodyText = await ReadResponseBody(context.Response);
             _logger.LogInformation("Response: {StatusCode} {Path} | Body: {Body}",

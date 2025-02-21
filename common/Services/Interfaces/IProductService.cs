@@ -1,18 +1,19 @@
 ﻿using common.Entities;
+using common.Models.Products;
 
 namespace common.Services.Interfaces
 {
     public interface IProductService
 	{
-        List<ProductEntity> GetAllProducts();
+        Task<List<ProductDTO>> GetAllProducts();
 
-        Task<ProductEntity> GetProductById(string id);
+        Task<ProductDTO> GetProductById(string id);
 
-        Task CreateProduct(ProductEntity product);
+        Task<string> CreateProduct(ProductReq reqBody);
 
-        Task UpdateProduct(string id, ProductEntity product);
+        Task<bool> UpdateProduct(string id, ProductReq reqBody);
 
-        Task DeleteProduct(string id);
+        Task<bool> DeleteProduct(string id);
     }
 }
 

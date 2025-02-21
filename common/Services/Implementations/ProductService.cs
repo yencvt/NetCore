@@ -1,51 +1,66 @@
 ﻿using common.Entities;
+using common.Models.Products;
+using common.Repositories;
 using common.Services.Interfaces;
+using common.Utils;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace common.Services.Implementations
 {
     public class ProductService : IProductService
     {
-        private readonly IMongoCollection<ProductEntity> _products;
-        private readonly IUserService _userService;
+        private readonly ProductRepository _productRepository;
 
-        public ProductService(IMongoDatabase database, IUserService userService)
+        public ProductService(ProductRepository productRepository)
         {
-            _products = database.GetCollection<ProductEntity>("products");
-            _userService = userService;
+            _productRepository = productRepository;
         }
 
-        public List<ProductEntity> GetAllProducts()
+        public async Task<List<ProductDTO>> GetAllProducts()
         {
-            return _products.Find(_ => true).ToList();
+            var products = await _productRepository.GetAllAsync();
+
+            return products.Select(p => {
+                return JsonUtils.ConvertObjectToObject<ProductDTO>(p);
+            }).ToList();
         }
 
-        public async Task<ProductEntity> GetProductById(string id)
+        public async Task<ProductDTO> GetProductById(string id)
         {
-            return await _products.Find(p => p.Id == id).FirstOrDefaultAsync();
+            var product = await _productRepository.GetByIdAsync(id);
+            if (product == null) return null;
+
+            return JsonUtils.ConvertObjectToObject<ProductDTO>(product);
         }
 
-        public async Task CreateProduct(ProductEntity product)
+        public async Task<string> CreateProduct(ProductReq reqBody)
         {
-            product.CreatedBy = _userService.GetCurrentUserId();
-            product.UpdatedBy = product.CreatedBy;
-            product.CreatedAt = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            product.UpdatedAt = product.CreatedAt;
+            ProductEntity product = JsonUtils.ConvertObjectToObject<ProductEntity>(reqBody);
 
-            await _products.InsertOneAsync(product);
+            await _productRepository.CreateAsync(product);
+            return product.Id;
         }
 
-        public async Task UpdateProduct(string id, ProductEntity product)
+        public async Task<bool> UpdateProduct(string id, ProductReq reqBody)
         {
-            product.UpdatedBy = _userService.GetCurrentUserId();
-            product.UpdatedAt = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            ProductEntity product = JsonUtils.ConvertObjectToObject<ProductEntity>(reqBody);
 
-            await _products.ReplaceOneAsync(p => p.Id == id, product);
+            var existingProduct = await _productRepository.GetByIdAsync(id);
+            if (existingProduct == null) return false;
+
+            product.Id = id;
+            await _productRepository.UpdateAsync(id, product);
+            return true;
         }
 
-        public async Task DeleteProduct(string id)
+        public async Task<bool> DeleteProduct(string id)
         {
-            await _products.DeleteOneAsync(p => p.Id == id);
+            var existingProduct = await _productRepository.GetByIdAsync(id);
+            if (existingProduct == null) return false;
+
+            await _productRepository.DeleteAsync(id);
+            return true;
         }
     }
 }

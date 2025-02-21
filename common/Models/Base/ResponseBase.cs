@@ -5,7 +5,16 @@ namespace common.Models.Base
 {
 	public class ResponseBase<T>
 	{
-		public ResponseBase(string code, string message, T body)
+        public ResponseBase()
+        {
+        }
+
+        public ResponseBase(T body)
+        {
+            this.body = body;
+        }
+
+        public ResponseBase(string code, string message, T body)
         {
 			this.code = code;
 			this.message = message;
