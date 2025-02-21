@@ -13,6 +13,8 @@
     <PackageReference Include="MongoDB.Driver" Version="3.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Text.Json" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +31,9 @@
     <None Remove="Models\Base\" />
     <None Remove="Filters\" />
     <None Remove="Logs\" />
+    <None Remove="Models\Configs\" />
+    <None Remove="Models\Securities\" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
@@ -44,6 +49,9 @@
     <Folder Include="Models\Base\" />
     <Folder Include="Filters\" />
     <Folder Include="Logs\" />
+    <Folder Include="Models\Configs\" />
+    <Folder Include="Models\Securities\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GraphQL, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null" />

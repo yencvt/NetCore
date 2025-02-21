@@ -1,8 +1,11 @@
-﻿namespace common.Services.Interfaces
+﻿using common.Models.Securities;
+
+namespace common.Services.Interfaces
 {
     public interface IUserService
     {
-        string GetCurrentUserId();
+        CustomUser GetCurrentUser { get; }
+        string GetCurrentUserId {get;}
     }
 }
 

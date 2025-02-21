@@ -28,7 +28,7 @@ namespace common.Repositories
 
         public async Task CreateAsync(ProductEntity product)
         {
-            product.CreatedBy = _userService.GetCurrentUserId();
+            product.CreatedBy = _userService.GetCurrentUserId;
             product.UpdatedBy = product.CreatedBy;
             product.CreatedAt = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             product.UpdatedAt = product.CreatedAt;
@@ -38,7 +38,7 @@ namespace common.Repositories
 
         public async Task UpdateAsync(string id, ProductEntity product)
         {
-            product.UpdatedBy = _userService.GetCurrentUserId();
+            product.UpdatedBy = _userService.GetCurrentUserId;
             product.UpdatedAt = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
             await _products.ReplaceOneAsync(p => p.Id == id, product);

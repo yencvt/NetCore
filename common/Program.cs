@@ -1,6 +1,8 @@
-﻿using common.Exceptions;
+﻿using common.Cacher;
+using common.Exceptions;
 using common.Filters;
 using common.Logs;
+using common.Models.Configs;
 using common.Repositories;
 using common.Services.Implementations;
 using common.Services.Interfaces;
@@ -25,6 +27,28 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Đọc cấu hình từ appsettings.json
+builder.Services.Configure<CacheConfig>(builder.Configuration.GetSection("CacheSettings"));
+
+// Đăng ký MemoryCache nếu bật
+if (builder.Configuration.GetValue<bool>("CacheSettings:EnableMemoryCache"))
+{
+    builder.Services.AddMemoryCache();
+}
+
+// Đăng ký RedisCache nếu bật
+if (builder.Configuration.GetValue<bool>("CacheSettings:EnableRedisCache"))
+{
+    builder.Services.AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = "localhost:6379"; // Đổi theo Redis của bạn
+        options.InstanceName = "SampleInstance";
+    });
+}
+
+builder.Services.AddSingleton<IMultipleCacheService, MultipleCacheService>();
+
+//Đăng ký product
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
@@ -41,6 +65,29 @@ builder.Services.AddSingleton<IMongoDatabase>(sp =>
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 
+
+// ✅ Đăng ký JwtService
+builder.Services.AddSingleton<JwtService>();
+
+// ✅ Cấu hình xác thực JWT
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = config["JwtSettings:Issuer"],
+            ValidAudience = config["JwtSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:Secret"]))
+        };
+    });
+
+builder.Services.AddAuthorization();
+builder.Services.AddControllers();
 
 
 // Đăng ký dịch vụ
@@ -70,8 +117,12 @@ if (app.Environment.IsDevelopment())
 
 // Đăng ký ExceptionMiddleware
 app.UseMiddleware<ExceptionMiddleware>();
+
 // Đăng ký RequestLoggingMiddleware
 app.UseMiddleware<RequestLoggingMiddleware>();
+
+// ✅ Kích hoạt xác thực & ủy quyền
+app.UseAuthentication();
 
 app.UseHttpsRedirection();
 

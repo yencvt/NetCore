@@ -80,3 +80,13 @@
 /Volumes/Data/Dev/DotNET/NetCore/common/obj/Debug/net8.0/common.csproj.Up2Date
 /Volumes/Data/Dev/DotNET/NetCore/common/obj/Debug/net8.0/common.genruntimeconfig.cache
 /Volumes/Data/Dev/DotNET/NetCore/common/obj/Debug/net8.0/ref/common.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.Extensions.Caching.Abstractions.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.Extensions.Caching.Memory.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Pipelines.Sockets.Unofficial.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/StackExchange.Redis.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll

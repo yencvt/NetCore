@@ -20,6 +20,14 @@ namespace common.Utils
             string jsonString = JsonSerializer.Serialize(obj);
             return JsonSerializer.Deserialize<T>(jsonString);
         }
+
+        /// <summary>
+        /// Chuyển object thành JSON chuẩn để hash
+        /// </summary>
+        public static string SerializeObject(object obj)
+        {
+            return JsonSerializer.Serialize(obj, new JsonSerializerOptions { IgnoreNullValues = true });
+        }
     }
 }
 

@@ -1,7 +1,9 @@
 ﻿using common.Entities;
+using common.Extensions;
 using common.Models.Base;
 using common.Models.Products;
 using common.Services.Interfaces;
+using common.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace common.Controllers
@@ -10,17 +12,31 @@ namespace common.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly ILogger<ProductController> _logger;
+        private readonly IMultipleCacheService _cacheService;
         private readonly IProductService _productService;
 
-        public ProductController(IProductService productService)
+        public ProductController(ILogger<ProductController> logger, IMultipleCacheService cacheService, IProductService productService)
         {
+            _logger = logger;
+            _cacheService = cacheService;
             _productService = productService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var products = await _productService.GetAllProducts();
+            ulong cacheKey = GeneratorUtils.GenerateFnv1aKey("product");
+
+            //var user = User.ToCustomUser();  // Lấy thông tin từ token
+
+            var products = await _cacheService.GetOrSetCacheAsync(cacheKey.ToString(), async () =>
+            {
+                _logger.LogInformation("Fetching product data from API 'api/products'.");
+                
+                return await _productService.GetAllProducts();
+            }, TimeSpan.FromMinutes(5));
+
             return Ok(new ResponseBase<List<ProductDTO>>(products));
         }
 
