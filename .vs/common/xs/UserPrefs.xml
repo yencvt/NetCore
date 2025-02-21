@@ -1,5 +1,20 @@
 ﻿<Properties StartupConfiguration="{E4E320F8-3DF9-44B7-A207-FB8A078AE675}|https" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.ItemProperties.common PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="common/Controllers/ProductController.cs">
+    <Files>
+      <File FileName="common/Program.cs" Line="40" Column="35" />
+      <File FileName="common/Controllers/ProductController.cs" Line="37" Column="63" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Volumes/Data/Dev/DotNET/NetCore/common/Exceptions/ValidationMiddleware.cs" relfile="common/Exceptions/ValidationMiddleware.cs" line="30" column="1" />
@@ -7,25 +22,6 @@
       <Breakpoint file="/Volumes/Data/Dev/DotNET/NetCore/common/Exceptions/ValidationMiddleware.cs" relfile="common/Exceptions/ValidationMiddleware.cs" line="20" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.common PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="common">
-            <Node name="common" expanded="True">
-              <Node name="Constants" expanded="True" />
-              <Node name="Entities" expanded="True">
-                <Node name="ProductEntity.cs" selected="True" />
-              </Node>
-              <Node name="Exceptions" expanded="True" />
-              <Node name="Logs" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
 </Properties>

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using common.Services.Interfaces;
+using common.Utils;
+using Microsoft.IdentityModel.Tokens;
 
 namespace common.Services.Implementations
 {
@@ -27,7 +30,8 @@ namespace common.Services.Implementations
         // ✅ Tạo Access Token
         public string GenerateAccessToken(IEnumerable<Claim> claims)
         {
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_secret));
+            var _secret32 = GeneratorUtils.GenerateKeyFromSecret(_secret, 32);
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_secret32));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(

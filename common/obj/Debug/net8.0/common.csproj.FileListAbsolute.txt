@@ -90,3 +90,15 @@
 /Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Pipelines.Sockets.Unofficial.dll
 /Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/StackExchange.Redis.dll
 /Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.AspNetCore.Authorization.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.AspNetCore.Metadata.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.Extensions.Configuration.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/Volumes/Data/Dev/DotNET/NetCore/common/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll

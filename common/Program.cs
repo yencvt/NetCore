@@ -1,4 +1,5 @@
-﻿using common.Cacher;
+﻿using System.Text;
+using common.Cacher;
 using common.Exceptions;
 using common.Filters;
 using common.Logs;
@@ -6,10 +7,14 @@ using common.Models.Configs;
 using common.Repositories;
 using common.Services.Implementations;
 using common.Services.Interfaces;
+using common.Utils;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddControllers(options =>
@@ -28,16 +33,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Đọc cấu hình từ appsettings.json
-builder.Services.Configure<CacheConfig>(builder.Configuration.GetSection("CacheSettings"));
+builder.Services.Configure<CacheConfig>(config.GetSection("CacheSettings"));
 
 // Đăng ký MemoryCache nếu bật
-if (builder.Configuration.GetValue<bool>("CacheSettings:EnableMemoryCache"))
+if (config.GetValue<bool>("CacheSettings:EnableMemoryCache"))
 {
     builder.Services.AddMemoryCache();
 }
 
 // Đăng ký RedisCache nếu bật
-if (builder.Configuration.GetValue<bool>("CacheSettings:EnableRedisCache"))
+if (config.GetValue<bool>("CacheSettings:EnableRedisCache"))
 {
     builder.Services.AddStackExchangeRedisCache(options =>
     {
@@ -82,12 +87,11 @@ builder.Services
             ValidateIssuerSigningKey = true,
             ValidIssuer = config["JwtSettings:Issuer"],
             ValidAudience = config["JwtSettings:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:Secret"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(GeneratorUtils.GenerateKeyFromSecret(config["JwtSettings:Secret"], 32)))
         };
     });
 
 builder.Services.AddAuthorization();
-builder.Services.AddControllers();
 
 
 // Đăng ký dịch vụ

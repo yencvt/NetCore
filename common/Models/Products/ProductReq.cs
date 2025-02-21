@@ -10,7 +10,6 @@ namespace common.Models.Products
         {
             this.Code = code;
         }
-
         public string Code { get; set; }
 
         public string Name { get; set; }
